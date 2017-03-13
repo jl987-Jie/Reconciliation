@@ -15,7 +15,7 @@ import parser.ReconFileReader;
 
 public class ReconciliationStrategyTest {
 
-	//@Test
+	@Test
 	public void testReconcile() throws IOException {
 		ReconcileStrategy strategy = new SequentialReconcileStrategy();
 		ReconFileReader reconFileReader = new ReconFileReader();
@@ -42,7 +42,7 @@ public class ReconciliationStrategyTest {
 		assertEquals(10, p4.getAmount(), Double.MIN_VALUE);
 	}
 	
-	//@Test
+	@Test
 	public void testReconcileCash() throws IOException {
 		ReconcileStrategy strategy = new SequentialReconcileStrategy();
 		ReconFileReader reconFileReader = new ReconFileReader();

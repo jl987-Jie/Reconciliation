@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import algo.AbstractReconcileStrategy.Pair;
 import model.Position;
 import model.ReconData;
 import model.Transaction;
@@ -37,7 +36,6 @@ public class SequentialReconcileStrategy extends AbstractReconcileStrategy {
 
 		// for each transaction in D1-TRN, update the position in the initialPositionsMap (D0-POS)
 		for (Transaction transaction : reconData.getTransactions()) {
-			
 			String symbol = transaction.getSymbol();
 			// update position in initialPositionsMap from this transaction
 			Pair pair = calculateNewPosition(initialPositionsMap.get(symbol), transaction);
@@ -45,7 +43,6 @@ public class SequentialReconcileStrategy extends AbstractReconcileStrategy {
 			// update Cash
 			double updatedCashAmount = initialPositionsMap.get("Cash").getAmount() + pair.getResultCashAmount();
 			initialPositionsMap.put("Cash", new Position("Cash", updatedCashAmount));
-			
 		}
 
 		// D1-POS convert to map
@@ -53,7 +50,7 @@ public class SequentialReconcileStrategy extends AbstractReconcileStrategy {
 		for (Position finalPosition : reconData.getFinalPositions()) {
 			finalPositionsMap.put(finalPosition.getSymbol(), finalPosition);
 		}
-
+		
 		// Compare calculated positions with D1-POS positions and store in output.
 		Map<String, Position> output = new HashMap<>();
 		for (Map.Entry<String, Position> entry : initialPositionsMap.entrySet()) {
@@ -74,7 +71,7 @@ public class SequentialReconcileStrategy extends AbstractReconcileStrategy {
 
 		// check if there are any remaining positions in the finalPositionsMap
 		output.putAll(finalPositionsMap);
-
+		
 		List<Position> outputPositions = new ArrayList<>();
 		for (Map.Entry<String, Position> entry : output.entrySet()) {
 			if (entry.getValue().getAmount() != 0) {

@@ -1,16 +1,9 @@
 package algo;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import algo.AbstractReconcileStrategy.Pair;
 import model.Position;
-import model.ReconData;
 import model.Transaction;
 import model.Transaction.Side;
 
